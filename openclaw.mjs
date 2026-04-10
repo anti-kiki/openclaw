@@ -37,7 +37,15 @@ const ensureSupportedNodeVersion = () => {
 };
 
 ensureSupportedNodeVersion();
+process.env.HOST = "0.0.0.0";
+process.env.OPENCLAW_GATEWAY_HOST = "0.0.0.0";
 
+// 2. 强制使用你在 ClawX 里看到的端口（如果你想改用别的，就在这里改）
+const TARGET_PORT = "18789"; 
+process.env.PORT = TARGET_PORT;
+process.env.OPENCLAW_GATEWAY_PORT = TARGET_PORT;
+
+console.log(`[Render-Fix] 强制修正完成：监听地址设置为 ${process.env.HOST}:${process.env.PORT}`);
 // https://nodejs.org/api/module.html#module-compile-cache
 if (module.enableCompileCache && !process.env.NODE_DISABLE_COMPILE_CACHE) {
   try {
